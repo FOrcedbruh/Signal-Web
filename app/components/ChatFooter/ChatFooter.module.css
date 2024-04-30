@@ -1,0 +1,23 @@
+.footer {
+    top: 90.5vh;
+    position: fixed;
+    display: flex;
+    width: 66.3%;
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: #0c0c0c;
+    border-radius: 20px;
+}
+
+.footer input {
+    background-color: transparent;
+    color: #fff;
+    outline: none;
+    border: none;
+    width: 600px;
+    padding: 5px 30px;
+    font-size: 16px;
+    letter-spacing: 0.7px;
+}

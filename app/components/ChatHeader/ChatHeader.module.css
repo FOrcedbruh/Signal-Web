@@ -1,0 +1,13 @@
+.header {
+    width: 66.7%;
+    top: 2.4vh;
+    position: fixed;
+    display: flex;
+    height: 60px;
+    padding: 0 40px;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    background-color: #0c0c0c;
+    border-radius: 20px;
+}

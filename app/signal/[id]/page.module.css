@@ -1,0 +1,11 @@
+.window {
+    width: 100%;
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    border: 2px solid #0c0c0c;
+    border-radius: 26px;
+    overflow-y: scroll;
+}

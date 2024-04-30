@@ -1,0 +1,74 @@
+.window {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    padding: 20px;
+    gap: 30px;
+}
+.aside {
+    border-radius: 20px;
+    width: 30%;
+    padding: 20px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: #0c0c0c;
+    gap: 40px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.search input {
+    text-align: center;
+    padding: 0 20px;
+    font-size: 16px;
+    font-weight: 500;
+    width: 80%;
+    background-color: #000;
+    outline: none;
+    border: none;
+    border-radius: 12px;
+    height: 30px;
+    color: #858585;
+    transition: all .5s ease;
+}
+.search input:focus {
+    text-align: start;
+}
+
+.container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.startWindow {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+}
+.startWindow h1 span {
+    color: #73fa75;
+}
+
+.chats {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 7px;
+}

@@ -1,0 +1,43 @@
+.window {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+.form div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+}
+.form div input {
+    background-color: transparent;
+    color: #fff;
+    border-radius: 8px;
+    padding: 5px 20px;
+    outline: none;
+    border: 2px solid #505050;
+    font-size: 14px;
+    letter-spacing: 0.1rem;
+    transition: all .4s ease;
+}
+
+.form div input:focus {
+    border: 2px solid #73fa75;
+}
+.window div a {
+    color: #73fa75;
+    text-decoration: none;
+}
