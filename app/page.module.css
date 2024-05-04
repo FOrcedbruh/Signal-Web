@@ -7,6 +7,7 @@
     align-items: center;
 }
 
-.main span {
+.main a {
     color: #73fa75;
+    text-decoration: none;
 }

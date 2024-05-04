@@ -4,22 +4,30 @@ import Conversation from '../components/Conversation/Conversation';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/context/authContext';
 import { useEffect } from 'react';
-
+import useGetConversations from '@/hooks/useGetConversations';
 
 
 
 
 const SideBar = ({children}: {children: React.ReactNode}) => {
 
+
+   
+    const { loading, conversations } = useGetConversations();
+
+
+
     const router = useRouter();
 
     const { authUser } = useAuthContext();
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (!authUser) {
             router.push('/login');
         }
-    }, [authUser]);
+    }, [authUser]);*/
+
+    
 
     return (
         <section className={styles.window}>
@@ -28,10 +36,11 @@ const SideBar = ({children}: {children: React.ReactNode}) => {
                     <input type="text" placeholder='Поиск'/>
                 </section>
                 <section className={styles.chats}>
-                    <Conversation />
-                    <Conversation />
-                    <Conversation />
-                    <Conversation />
+                    {conversations.map((conversation, index) => {
+                        return (
+                            <Conversation index={index} username={conversation.username} _id={conversation._id} avatar={conversation.avatar}  key={index}/>
+                        )
+                    })}
                 </section>
             </aside>
             <div className={styles.container}>
