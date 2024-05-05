@@ -2,12 +2,14 @@
 import styles from './Messages.module.css';
 import Message from '../Message/Message';
 import useGetMessages from '@/hooks/useGetMessages';
+import useListenMessages from '@/hooks/useListenMessages';
 
 
 
 const Messages: React.FC = () => {
 
     const { messages, loading } = useGetMessages();
+    useListenMessages();
 
     return (
         <section className={styles.window}>

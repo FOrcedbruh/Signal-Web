@@ -7,8 +7,7 @@ import { IMessage } from "@/types/IMessage";
 
 const useGetMessages = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    const {  selectedConversation } = useAppSelector(state => state.ConversationSlice);
-    const [messages, setMessages] = useState<IMessage[]>([]);
+    const {  selectedConversation, messages } = useAppSelector(state => state.ConversationSlice);
 
     const dispatch = useAppDispatch();
 
@@ -17,7 +16,7 @@ const useGetMessages = () => {
             setLoading(true);
             try {
                 await instance.get(`messages/${selectedConversation?._id}`).then(res => {
-                    setMessages(res.data);
+                    dispatch(setMessages(res.data));
                 })
             } catch (error) {
                 console.log(error);
@@ -29,7 +28,7 @@ const useGetMessages = () => {
         if (selectedConversation?._id) {
             getMessages();
         }
-    }, [selectedConversation, messages]);
+    }, [selectedConversation, messages, setMessages]);
    
 
     return { messages, loading}

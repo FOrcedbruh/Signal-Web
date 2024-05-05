@@ -17,8 +17,6 @@ const useSendMessage = () => {
         try {
             await instance.post(`/messages/send/${selectedConversation?._id}`, {
                 message: message.message
-            }).then(res => {
-                setMessages(res.data);
             })
         } catch (e) {
             console.log(e);

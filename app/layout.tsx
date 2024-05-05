@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Roboto_Mono } from 'next/font/google'
 import './global.css';
 import { AuthContextProvider } from "@/context/authContext";
+import { SocketContextProvider } from "@/context/socketContext";
 
 const roboto_mono = Roboto_Mono({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={roboto_mono.className}>
         <AuthContextProvider>
-          {children}
+          <SocketContextProvider>
+            {children}
+          </SocketContextProvider>
         </AuthContextProvider>
       </body>
     </html>

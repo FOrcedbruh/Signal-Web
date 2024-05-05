@@ -18,8 +18,8 @@ const ConversationSlice = createSlice({
     name: 'Conversation',
     initialState,
     reducers: {
-        setMessages(state, action: PayloadAction<IMessage>) {
-            state.messages.push(action.payload);
+        setMessages(state, action: PayloadAction<IMessage[]>) {
+            state.messages = action.payload;
         },
         setConversations(state, action: PayloadAction<IConversation[]>) {
             state.conversations = action.payload;
