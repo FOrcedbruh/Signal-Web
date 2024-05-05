@@ -2,8 +2,11 @@
 import styles from './ChatFooter.module.css';
 import Button from '../Button/Button';
 import { useState, ChangeEvent, FormEvent} from 'react';
+import useSendMessage from '@/hooks/useSendMessage';
 
 const ChatFooter: React.FC = () => {
+
+    const { sendMessage, loading } = useSendMessage();
 
     const [text, setText] = useState<string>('');
 
@@ -13,8 +16,15 @@ const ChatFooter: React.FC = () => {
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if(!text) {
+            return;
+        }
+        
+        sendMessage({
+            message: text
+        });
         setText('');
-        console.log(text);
     }
 
     return (

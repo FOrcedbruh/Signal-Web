@@ -1,16 +1,21 @@
+'use client'
 import styles from './Messages.module.css';
 import Message from '../Message/Message';
-
-
+import useGetMessages from '@/hooks/useGetMessages';
 
 
 
 const Messages: React.FC = () => {
 
+    const { messages, loading } = useGetMessages();
+
     return (
         <section className={styles.window}>
-            <Message />
-            <Message />
+           {messages.map(message => {
+                return (
+                    <Message _id={message._id} key={message._id} senderId={message.senderId} message={message.message} receiverId={message.receiverId}/>
+                )
+           })}
         </section>
     )
 }

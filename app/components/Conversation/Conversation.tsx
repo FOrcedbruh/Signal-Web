@@ -14,12 +14,18 @@ const Conversation: React.FC<IConversation> = ({username, avatar, _id, index}) =
     
     const { selectedConversation } = useAppSelector(state => state.ConversationSlice);
 
-    const isSelected = _id === selectedConversation;
+    
 
     const clickHandle = () => {
-        dispatch(selectConversation(_id));
+        dispatch(selectConversation({
+            username,
+            avatar,
+            _id,
+        }));
         router.push(`/signal/${index}`);
     }
+
+    const isSelected = _id === selectedConversation?._id;
 
     return (
         <article style={{'backgroundColor': isSelected ? '#73fa75' : '#000'}} className={styles.conv} onClick={clickHandle}>

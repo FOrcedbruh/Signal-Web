@@ -2,10 +2,11 @@
 import { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import Store from "@/redux/Store";
+import { IUser } from "@/types/IUser";
 
 interface IContext {
-    authUser: string | null | undefined,
-    setAuthUser?: Dispatch<SetStateAction<string | null | undefined>>
+    authUser: string | null | undefined | IUser,
+    setAuthUser?: Dispatch<SetStateAction<string | null | undefined | IUser>>
 }
 
 export const AuthContext = createContext<IContext>({
@@ -19,7 +20,7 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({children}: {children: React.ReactNode}) => {
 
-    const [authUser, setAuthUser] = useState<string | null | undefined>(null);
+    const [authUser, setAuthUser] = useState<string | null | undefined | IUser>(null);
 
     useEffect(() => {
         //@ts-ignore
@@ -28,7 +29,7 @@ export const AuthContextProvider = ({children}: {children: React.ReactNode}) => 
     return (
         <Provider store={Store}>
             <AuthContext.Provider value={{authUser, setAuthUser}}>
-            {children}
+                {children}
             </AuthContext.Provider>
         </Provider>
         

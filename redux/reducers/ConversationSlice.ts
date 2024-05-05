@@ -1,30 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IConversation } from "@/types/IConversation";
-
+import { IMessage } from '@/types/IMessage';
 
 interface StateType {
-    messages: any[],
+    messages: IMessage[],
     conversations: IConversation[],
-    selectedConversation?: string | undefined
+    selectedConversation: IConversation | null
 }
 
 const initialState: StateType = {
     messages: [],
     conversations: [],
-    selectedConversation: ''
+    selectedConversation: null
 }
 
 const ConversationSlice = createSlice({
     name: 'Conversation',
     initialState,
     reducers: {
-        setMessages(state, action: PayloadAction<any>) {
-            state.messages = action.payload;
+        setMessages(state, action: PayloadAction<IMessage>) {
+            state.messages.push(action.payload);
         },
         setConversations(state, action: PayloadAction<IConversation[]>) {
             state.conversations = action.payload;
         },
-        selectConversation(state, action: PayloadAction<string>) {
+        selectConversation(state, action: PayloadAction<IConversation | null>) {
             state.selectedConversation = action.payload;
         }
     }

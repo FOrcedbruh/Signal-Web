@@ -2,16 +2,19 @@ import Image from "next/image"
 import styles from './ChatHeader.module.css';
 
 
+interface HeaderPropsType {
+    avatar: string,
+    username: string
+}
 
 
-
-const ChatHeader: React.FC = () => {
+const ChatHeader: React.FC<HeaderPropsType> = ({username, avatar}) => {
 
 
     return (
         <header className={styles.header}>
-            <Image src={'https://avatar.iran.liara.run/public/boy'} alt="" width={40} height={40}/>
-            <h3>Lexa</h3>
+            <Image src={avatar} alt="" width={40} height={40}/>
+            <h3>{username}</h3>
         </header>
     )
 }
