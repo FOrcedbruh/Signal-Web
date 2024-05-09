@@ -13,9 +13,9 @@ const Messages: React.FC = () => {
 
     return (
         <section className={styles.window}>
-           {messages.map(message => {
+           {messages.map((message, index) => {
                 return (
-                    <Message _id={message._id} key={message._id} senderId={message.senderId} message={message.message} receiverId={message.receiverId}/>
+                    <Message index={index} _id={message._id} key={message._id} senderId={message.senderId} message={message.message} receiverId={message.receiverId}/>
                 )
            })}
         </section>

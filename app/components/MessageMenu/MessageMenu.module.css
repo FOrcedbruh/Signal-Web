@@ -1,0 +1,30 @@
+.menu {
+    flex-direction: column;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 5px;
+    color: #fff;
+    list-style: none;
+    background-color: #0e0e0e;
+    padding: 16px 20px;
+    margin: 0;
+    border-radius: 16px;
+    margin-top: 170px;
+    margin-left: 100px;
+}
+.menu li {
+    width: 100%;
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    transition: all .3s ease;
+    cursor: pointer;
+    gap: 10px;
+}
+.menu li:hover {
+    background-color: #1d1d1d;
+}

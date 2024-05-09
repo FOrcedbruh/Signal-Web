@@ -7,6 +7,8 @@ import { instance } from "@/authInstance/instance";
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
+
 
 const Registration: React.FC = () => {
 
@@ -63,11 +65,23 @@ const Registration: React.FC = () => {
         reset();
     }
 
+
+    const variants = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: (custom: any) =>  ({
+            opacity: 1,
+            transition: { delay: custom * 0.3, duration: 0.5}
+        })
+    }
+
+
     return (
         <section className={styles.window}>
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <h1>Создайте аккаунт</h1>
-                <div>
+                <motion.h1 custom={1} initial={'hidden'} animate={'visible'} variants={variants}>Создайте аккаунт</motion.h1>
+                <motion.div custom={2} initial={'hidden'} animate={'visible'} variants={variants}>
                     <label htmlFor="username">Username</label>
                     <input type="text" placeholder="V.V. Putin" {...register('username', {
                         required: 'У вас нет имени?',
@@ -76,14 +90,14 @@ const Registration: React.FC = () => {
                             message: 'Минимум 2 символа'
                         }
                     })}/>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div  custom={3} initial={'hidden'} animate={'visible'} variants={variants}>
                     <label htmlFor="fullname">Полное имя</label>
                     <input type="text" placeholder="Владимир Путин" {...register('fullname', {
                         required: 'Вы безымянный?'
                     })}/>
-                </div>
-                <div className={styles.genderCheckboxes}>
+                </motion.div>
+                <motion.div custom={4} initial={'hidden'} animate={'visible'} variants={variants} className={styles.genderCheckboxes}>
                     <p>Выберите пол</p>
                     <div className={styles.gender}>
                         <input defaultChecked type="radio" {...register('gender', {
@@ -97,8 +111,8 @@ const Registration: React.FC = () => {
                         })} value={'female'}/>
                         <label htmlFor="gender">Женский</label>
                     </div>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div custom={5} initial={'hidden'} animate={'visible'} variants={variants}>
                     <label htmlFor="password">Пароль</label>
                     <input type="password" placeholder="..." {...register('password', {
                         required: 'А как же пароль?',
@@ -107,10 +121,10 @@ const Registration: React.FC = () => {
                             message: 'Минимум 6 символов'
                         }
                     })}/>
-                </div>
+                </motion.div>
                 <Button isDisabled={!isValid} type="submit" text="Войти" w={220} h={40}/>
             </form>
-            <div>У вас уже есть аккаунт? <Link href={'/login'}>Войти</Link></div>
+            <motion.div custom={6} initial={'hidden'} animate={'visible'} variants={variants}>У вас уже есть аккаунт? <Link href={'/login'}>Войти</Link></motion.div>
         </section>
        
     )

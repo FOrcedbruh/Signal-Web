@@ -9,7 +9,8 @@ const HomePage: React.FC = () => {
 
     return (
         <main className={styles.main}>
-           <h1>Добро пожаловать в <Link href={'/login'}>Signal</Link></h1>
+           <h1
+            >Добро пожаловать в <Link href={'/login'}>Signal</Link></h1>
         </main>
     )
 }

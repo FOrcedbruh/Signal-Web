@@ -7,6 +7,7 @@ import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { instance } from "@/authInstance/instance";
+import { motion } from "framer-motion";
 
 const Login: React.FC = () => {
 
@@ -51,15 +52,26 @@ const Login: React.FC = () => {
             //@ts-ignore
             setAuthUser(res.data);
         })
+
         reset();
     }
 
-    return (
-        <section className={styles.window}>
-            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <h1>Войдите в свой аккаунт</h1>
+    const variants = {
+        hidden: {
+            opacity: 0,
+        },
+        visible: (custom: any) =>  ({
+            opacity: 1,
+            transition: { delay: custom * 0.3, duration: 0.5}
+        })
+    }
 
-                <div>
+    return (
+        <section  className={styles.window}>
+            <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+                <motion.h1 custom={1} initial={'hidden'} animate={'visible'} variants={variants}>Войдите в свой аккаунт</motion.h1>
+
+                <motion.div custom={2} initial={'hidden'} animate={'visible'} variants={variants}>
                     <label htmlFor="username">Username</label>
                     <input type="text" placeholder="V.V. Putin" {...register('username', {
                         required: 'У вас нет имени?',
@@ -68,8 +80,8 @@ const Login: React.FC = () => {
                             message: 'Минимум 2 символа'
                         }
                     })}/>
-                </div>
-                <div>
+                </motion.div>
+                <motion.div custom={3} initial={'hidden'} animate={'visible'} variants={variants}>
                     <label htmlFor="password">Пароль</label>
                     <input type="password" placeholder="..." {...register('password', {
                         required: 'А как же пароль?',
@@ -78,10 +90,10 @@ const Login: React.FC = () => {
                             message: 'Минимум 6 символов'
                         }
                     })}/>
-                </div>
+                </motion.div>
                 <Button isDisabled={!isValid} type="submit" text="Войти" w={220} h={40}/>
             </form>
-            <div>У вас еще нет аккаунта? <Link href={'/registration'}>Зарегистрироваться</Link></div>
+            <motion.div custom={4} initial={'hidden'} animate={'visible'} variants={variants}>У вас еще нет аккаунта? <Link href={'/registration'}>Зарегистрироваться</Link></motion.div>
         </section>
        
     )

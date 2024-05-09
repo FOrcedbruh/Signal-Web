@@ -1,4 +1,5 @@
 import styles from './Button.module.css';
+import { motion } from 'framer-motion';
 
 interface ButtonPropsType {
     action?: () => any,
@@ -13,14 +14,17 @@ interface ButtonPropsType {
 const Button: React.FC<ButtonPropsType> = ({action, text, w, h, type, isDisabled}) => {
 
     return (
-        <button disabled={isDisabled} type={type} onClick={action} style={{
+        <motion.button animate={{
+            backgroundColor: isDisabled ? 'gray' : '#73fa75'
+        }} whileTap={{
+            scale: 0.8,
+        }} disabled={isDisabled} type={type} onClick={action} style={{
             'width': w,
             'height': h,
             'cursor': isDisabled ? 'not-allowed' : 'pointer',
-            'backgroundColor': isDisabled ? 'gray' : '#73fa75'
         }} className={styles.button}>
             {text}
-        </button>
+        </motion.button>
     )
 }
 

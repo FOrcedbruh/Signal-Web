@@ -1,0 +1,37 @@
+.menu {
+    max-height: 300px;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 100%;
+    padding: 20px;
+    background-color: #0c0c0c;
+}
+
+.menu ul {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    margin: 0;
+    padding: 30px 20px;
+    list-style: none;
+}
+.menu ul li {
+    border-radius: 14px;
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.menu ul li:hover {
+    background-color: #1d1d1d;
+}

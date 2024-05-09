@@ -6,11 +6,13 @@ import { useAuthContext } from '@/context/authContext';
 import { useEffect, useState, ChangeEvent } from 'react';
 import useGetConversations from '@/hooks/useGetConversations';
 import { IConversation } from '@/types/IConversation';
-
-
+import Menu from '../components/Menu/Menu';
+import { motion } from 'framer-motion';
 
 
 const SideBar = ({children}: {children: React.ReactNode}) => {
+
+    const [menu, setMenu] = useState<boolean>(false);
 
     const [searchValue, setSearchValue] = useState<string>('');
 
@@ -39,16 +41,33 @@ const SideBar = ({children}: {children: React.ReactNode}) => {
     return (
         <section className={styles.window}>
             <aside className={styles.aside}>
-                <section className={styles.search}>
+                <motion.div animate={{
+                    rotate: menu ? 180 : 0
+                }} className={styles.burgerMenu} onClick={() => setMenu(!menu)}>
+                    <motion.div animate={{
+                        rotate: menu ? 45 : 0,
+                        y: menu ? 8 : 0,
+                    }}></motion.div>
+                    <motion.div animate={{
+                        opacity: menu ? 0 : 1
+                    }}></motion.div>
+                    <motion.div animate={{
+                         rotate: menu ? -45 : 0,
+                         y: menu ? -8 : 0,
+                    }}></motion.div>
+                </motion.div>
+                {menu && <Menu />}
+                <motion.section className={styles.search}>
                     <input type="text" placeholder='Поиск' value={searchValue} onChange={(e) => seacrhHandle(e)}/>
-                </section>
-                <section className={styles.chats}>
+                </motion.section>
+                <motion.section 
+                className={styles.chats}>
                     {filteredConversations.map((conversation, index) => {
                         return (
                             <Conversation index={index} username={conversation.username} _id={conversation._id} avatar={conversation.avatar}  key={index}/>
                         )
                     })}
-                </section>
+                </motion.section>
             </aside>
             <div className={styles.container}>
                 {children}
