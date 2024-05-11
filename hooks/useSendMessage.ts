@@ -1,16 +1,13 @@
 'use client'
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "./ReduxTypeHook";
-import { setMessages } from "@/redux/reducers/ConversationSlice";
 import { instance } from "@/authInstance/instance";
 import { IMessage } from "@/types/IMessage";
+import useConversation from "@/zustand/useConversation";
 
 const useSendMessage = () => {
     const [loading, setLoading] = useState<boolean>(false);
-    const { selectedConversation } = useAppSelector(state => state.ConversationSlice);
-    const [ messages, setMessages ] = useState<IMessage[]>([]);
+    const { selectedConversation } = useConversation()
 
-    const dispatch = useAppDispatch();
 
     const sendMessage = async (message: IMessage) => {
         setLoading(true);

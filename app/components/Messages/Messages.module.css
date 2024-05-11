@@ -1,5 +1,5 @@
 .window {
-    padding: 100px 20px;
+    padding: 100px 20px 300px 20px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -7,4 +7,5 @@
     width: 100%;
     height: 85vh;
     gap: 40px;
+    overflow: scroll;
 }

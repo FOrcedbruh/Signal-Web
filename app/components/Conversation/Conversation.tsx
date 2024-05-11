@@ -2,27 +2,26 @@
 import styles from './Conversation.module.css';
 import Image from 'next/image';
 import { IConversation } from '@/types/IConversation';
-import { selectConversation } from '@/redux/reducers/ConversationSlice';
-import { useAppDispatch, useAppSelector } from '@/hooks/ReduxTypeHook';
 import { useRouter } from 'next/navigation';
 import { useSocketContext } from '@/context/socketContext';
+import useConversation from '@/zustand/useConversation';
 
 const Conversation: React.FC<IConversation> = ({username, avatar, _id, index}) => {
 
-    const dispatch = useAppDispatch();
 
     const router = useRouter();
     
-    const { selectedConversation } = useAppSelector(state => state.ConversationSlice);
+    const { selectedConversation, setSelectedConversation } = useConversation();
 
     
 
     const clickHandle = () => {
-        dispatch(selectConversation({
+        setSelectedConversation({
             username,
-            avatar,
             _id,
-        }));
+            avatar,
+            index
+        })
         router.push(`/signal/${index}`);
     }
 

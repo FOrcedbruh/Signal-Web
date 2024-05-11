@@ -3,24 +3,20 @@ import ChatHeader from "@/app/components/ChatHeader/ChatHeader"
 import styles from './page.module.css';
 import Messages from "@/app/components/Messages/Messages";
 import ChatFooter from "@/app/components/ChatFooter/ChatFooter";
-import { useAppSelector } from "@/hooks/ReduxTypeHook";
+import useConversation from "@/zustand/useConversation";
 
 const ChatPage = ({params}: {params: {id: number}}) => {
 
-    const { selectedConversation } = useAppSelector(state => state.ConversationSlice);
 
     const id: number = params.id;
 
-    
+    const { selectedConversation } = useConversation();
 
-    //@ts-ignore
-    const avatar: string = selectedConversation?.avatar;
-    //@ts-ignore
-    const username: string = selectedConversation?.username;
+
 
     return (
         <section className={styles.window}>
-            <ChatHeader avatar={avatar} username={username}/>
+            <ChatHeader avatar={selectedConversation?.avatar!} username={selectedConversation?.username!}/>
             <Messages />
             <ChatFooter />
         </section>

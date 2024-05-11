@@ -3,7 +3,7 @@ import styles from './Messages.module.css';
 import Message from '../Message/Message';
 import useGetMessages from '@/hooks/useGetMessages';
 import useListenMessages from '@/hooks/useListenMessages';
-
+import Loader from '../Loader/Loader';
 
 
 const Messages: React.FC = () => {
@@ -12,13 +12,22 @@ const Messages: React.FC = () => {
     useListenMessages();
 
     return (
-        <section className={styles.window}>
-           {messages.map((message, index) => {
-                return (
-                    <Message index={index} _id={message._id} key={message._id} senderId={message.senderId} message={message.message} receiverId={message.receiverId}/>
-                )
-           })}
-        </section>
+        <>  {
+            loading
+            ? 
+            <Loader />
+            :
+            <section className={styles.window}>
+                {messages.map((message, index) => {
+                        return (
+                            <Message index={index} _id={message._id} key={message._id} senderId={message.senderId} message={message.message} receiverId={message.receiverId}/>
+                        )
+                })}
+            </section>
+
+        }
+        </>
+        
     )
 }
 

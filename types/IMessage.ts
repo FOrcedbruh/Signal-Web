@@ -3,5 +3,5 @@ export interface IMessage {
     _id?: string,
     senderId?: string,
     receiverId?: string,
-    index: number
+    index?: number
 }

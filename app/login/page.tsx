@@ -5,11 +5,19 @@ import Button from "../components/Button/Button";
 import Link from "next/link";
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { instance } from "@/authInstance/instance";
 import { motion } from "framer-motion";
+import eyeIcon from './../../images/icons/eyeIcon.svg';
+import nonEyeIcon from './../../images/icons/nonEyeIcon.svg';
+import Image from "next/image";
+
+
 
 const Login: React.FC = () => {
+
+
+    const [eye, setEye] = useState<boolean>(false);
 
     const { authUser, setAuthUser} = useAuthContext();
 
@@ -51,10 +59,11 @@ const Login: React.FC = () => {
             localStorage.setItem('chat-user', JSON.stringify(res.data));
             //@ts-ignore
             setAuthUser(res.data);
-        })
+        });
 
         reset();
     }
+
 
     const variants = {
         hidden: {
@@ -68,6 +77,14 @@ const Login: React.FC = () => {
 
     return (
         <section  className={styles.window}>
+            {errors.username?.message && 
+            <div className={styles.error} style={{'top': `${5 * 1}%`}}>
+                {errors.username?.message}
+            </div>}
+            {errors.password?.message &&
+            <div className={styles.error} style={{'top': `${5 * 2.5}%`}}>
+                {errors.password?.message}
+            </div>}
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <motion.h1 custom={1} initial={'hidden'} animate={'visible'} variants={variants}>Войдите в свой аккаунт</motion.h1>
 
@@ -77,17 +94,17 @@ const Login: React.FC = () => {
                         required: 'У вас нет имени?',
                         minLength: {
                             value: 2,
-                            message: 'Минимум 2 символа'
+                            message: 'Имя минимум 2 символа'
                         }
                     })}/>
                 </motion.div>
                 <motion.div custom={3} initial={'hidden'} animate={'visible'} variants={variants}>
-                    <label htmlFor="password">Пароль</label>
-                    <input type="password" placeholder="..." {...register('password', {
+                    <label onClick={() => setEye(!eye)} htmlFor="password">Пароль <Image alt="" width={20} height={20} src={eye ? nonEyeIcon : eyeIcon }/></label>
+                    <input type={`${eye ? 'text' : 'password'}`} placeholder="..." {...register('password', {
                         required: 'А как же пароль?',
                         minLength: {
-                            value: 2,
-                            message: 'Минимум 6 символов'
+                            value: 6,
+                            message: 'Пароль минимум 6 символов'
                         }
                     })}/>
                 </motion.div>

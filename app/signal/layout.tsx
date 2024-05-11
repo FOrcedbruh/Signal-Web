@@ -8,9 +8,13 @@ import useGetConversations from '@/hooks/useGetConversations';
 import { IConversation } from '@/types/IConversation';
 import Menu from '../components/Menu/Menu';
 import { motion } from 'framer-motion';
+import Not from '../components/Not/Not';
+import useNotification from '@/zustand/useNotification';
 
 
 const SideBar = ({children}: {children: React.ReactNode}) => {
+
+    const { notification } = useNotification();
 
     const [menu, setMenu] = useState<boolean>(false);
 
@@ -40,6 +44,7 @@ const SideBar = ({children}: {children: React.ReactNode}) => {
 
     return (
         <section className={styles.window}>
+            {notification && <Not text={notification} />}
             <aside className={styles.aside}>
                 <motion.div animate={{
                     rotate: menu ? 180 : 0

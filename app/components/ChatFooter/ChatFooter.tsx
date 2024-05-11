@@ -22,7 +22,7 @@ const ChatFooter: React.FC = () => {
         }
         
         sendMessage({
-            message: text
+            message: text,
         });
         setText('');
     }

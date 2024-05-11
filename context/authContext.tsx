@@ -1,7 +1,5 @@
 'use client'
 import { Dispatch, SetStateAction, createContext, useContext, useEffect, useState } from "react";
-import { Provider } from "react-redux";
-import Store from "@/redux/Store";
 import { IUser } from "@/types/IUser";
 
 interface IContext {
@@ -27,11 +25,9 @@ export const AuthContextProvider = ({children}: {children: React.ReactNode}) => 
         setAuthUser(JSON.parse(localStorage.getItem('chat-user')));
     }, []);
     return (
-        <Provider store={Store}>
             <AuthContext.Provider value={{ authUser, setAuthUser }}>
                 {children}
             </AuthContext.Provider>
-        </Provider>
         
     )
 }

@@ -22,6 +22,14 @@
     align-items: start;
     gap: 5px;
 }
+.form div label {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    user-select: none;
+}
 .form div input {
     background-color: transparent;
     color: #fff;
@@ -40,4 +48,18 @@
 .window div a {
     color: #73fa75;
     text-decoration: none;
+}
+
+.error {
+    position: absolute;
+    left: 80%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 14px;
+    font-weight: 600;
+    background-color: rgb(255, 149, 149);
+    color: rgb(255, 29, 29);
 }

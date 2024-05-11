@@ -5,8 +5,9 @@ import copyIcon from './../../../images/icons/copyIcon.svg';
 import deleteIcon from './../../../images/icons/deleteIcon.svg';
 import editIcon from './../../../images/icons/editIcon.svg';
 import Image from 'next/image';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { instance } from '@/authInstance/instance';
+import useNotification from '@/zustand/useNotification';
 
 
 interface MessageMenuProps {
@@ -22,8 +23,11 @@ interface MessageMenuProps {
 
 const MessageMenu: React.FC<MessageMenuProps> = ({message_id, senderId, receiverId,  textToCopy, index, isVisible, close}) => { 
 
+    const { setNotification } = useNotification();
+
     const copyToClipboard = async () => {
         await navigator.clipboard.writeText(textToCopy);
+        setNotification('Сообшение скопировано');
     }
 
     const deleteMessage = async  () => {
@@ -34,6 +38,7 @@ const MessageMenu: React.FC<MessageMenuProps> = ({message_id, senderId, receiver
             index
         }).then(res => {
             console.log(res.data);
+            setNotification(res.data.message);
         })
     }
 
