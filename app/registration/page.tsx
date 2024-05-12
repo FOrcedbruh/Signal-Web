@@ -6,11 +6,17 @@ import Link from "next/link";
 import { instance } from "@/authInstance/instance";
 import { useAuthContext } from "@/context/authContext";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import eyeIcon from './../../images/icons/eyeIcon.svg';
+import nonEyeIcon from './../../images/icons/nonEyeIcon.svg';
+import Image from "next/image";
+
 
 
 const Registration: React.FC = () => {
+
+    const [eye, setEye] = useState<boolean>(false);
 
     const { authUser, setAuthUser } = useAuthContext();
 
@@ -79,6 +85,19 @@ const Registration: React.FC = () => {
 
     return (
         <section className={styles.window}>
+            {errors.username?.message && 
+            <div className={styles.error} style={{'top': `${5 * 1}%`}}>
+                {errors.username?.message}
+            </div>}
+            {errors.fullname?.message && 
+            <div className={styles.error} style={{'top': `${5 * 2.5}%`}}>
+                {errors.fullname.message}
+            </div>}
+            {errors.password?.message &&
+            <div className={styles.error} style={{'top': `${5 * 4}%`}}>
+                {errors.password?.message}
+            </div>}
+            
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <motion.h1 custom={1} initial={'hidden'} animate={'visible'} variants={variants}>Создайте аккаунт</motion.h1>
                 <motion.div custom={2} initial={'hidden'} animate={'visible'} variants={variants}>
@@ -113,8 +132,8 @@ const Registration: React.FC = () => {
                     </div>
                 </motion.div>
                 <motion.div custom={5} initial={'hidden'} animate={'visible'} variants={variants}>
-                    <label htmlFor="password">Пароль</label>
-                    <input type="password" placeholder="..." {...register('password', {
+                    <label onClick={() => setEye(!eye)} htmlFor="password">Пароль <Image alt="" width={20} height={20} src={eye ? nonEyeIcon : eyeIcon } /></label>
+                    <input type={`${eye ? 'text' : 'password'}`} placeholder="..." {...register('password', {
                         required: 'А как же пароль?',
                         minLength: {
                             value: 2,

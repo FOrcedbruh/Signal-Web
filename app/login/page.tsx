@@ -11,11 +11,13 @@ import { motion } from "framer-motion";
 import eyeIcon from './../../images/icons/eyeIcon.svg';
 import nonEyeIcon from './../../images/icons/nonEyeIcon.svg';
 import Image from "next/image";
-
+import useNotification from "@/zustand/useNotification";
+import Not from "../components/Not/Not";
 
 
 const Login: React.FC = () => {
 
+    const { notification, setNotification } = useNotification();
 
     const [eye, setEye] = useState<boolean>(false);
 
@@ -48,19 +50,22 @@ const Login: React.FC = () => {
         mode: 'onChange'
     });
 
-    const onSubmit = (data: FormStatetype) => {
+    const onSubmit = async (data: FormStatetype) => {
         const username: string = data.username;
         const password: string = data.password;
 
-        instance.post('/auth/login', {
+        const res = await instance.post('/auth/login', {
             username,
             password
-        }).then(res => {
-            localStorage.setItem('chat-user', JSON.stringify(res.data));
-            //@ts-ignore
-            setAuthUser(res.data);
         });
 
+        if (res.status == 400) {
+            console.log('Ошибка')
+        } else {
+            localStorage.setItem('chat-user', JSON.stringify(res.data));
+         //@ts-ignore
+         setAuthUser(res.data);
+        }
         reset();
     }
 
@@ -77,6 +82,7 @@ const Login: React.FC = () => {
 
     return (
         <section  className={styles.window}>
+            {notification && <Not text={notification} />}
             {errors.username?.message && 
             <div className={styles.error} style={{'top': `${5 * 1}%`}}>
                 {errors.username?.message}

@@ -14,23 +14,21 @@ const ChatFooter: React.FC = () => {
         setText(e.target.value);
     }
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = async  (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if(!text) {
             return;
         }
         
-        sendMessage({
-            message: text,
-        });
+        await sendMessage(text);
         setText('');
     }
 
     return (
         <form onSubmit={(e) => onSubmit(e)} className={styles.footer}>
             <input type="text" placeholder='Написать сообщение...' value={text} onChange={(e) => textHandle(e)}/>
-            <Button isDisabled={!text} text='Написать' w={120} h={30}/>
+            <Button isDisabled={!text} text='Написать' w={120} h={30} isLoading={loading}/>
         </form>
     )
 }

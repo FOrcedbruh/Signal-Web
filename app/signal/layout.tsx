@@ -67,11 +67,11 @@ const SideBar = ({children}: {children: React.ReactNode}) => {
                 </motion.section>
                 <motion.section 
                 className={styles.chats}>
-                    {filteredConversations.map((conversation, index) => {
+                    {filteredConversations.length > 0 ? filteredConversations.map((conversation, index) => {
                         return (
                             <Conversation index={index} username={conversation.username} _id={conversation._id} avatar={conversation.avatar}  key={index}/>
                         )
-                    })}
+                    }) : <h3 style={{'color': '#666', 'userSelect': 'none'}}>Чаты не найдены</h3>}
                 </motion.section>
             </aside>
             <div className={styles.container}>

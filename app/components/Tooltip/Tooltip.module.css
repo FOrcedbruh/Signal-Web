@@ -1,0 +1,24 @@
+.main {
+    margin-top: 100px;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #73fa75;
+    border-radius: 14px;
+    box-shadow: 3px 7px 29px -4px #3a3a3a;
+    -webkit-box-shadow: 3px 7px 29px -4px #3a3a3a;
+    -moz-box-shadow: 3px 7px 29px -4px #3a3a3a;
+    z-index: 10;
+}
+
+.main p {
+    margin: 0;
+    color: #fff;
+    font-weight: 400;
+}

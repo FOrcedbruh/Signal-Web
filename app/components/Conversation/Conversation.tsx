@@ -35,7 +35,7 @@ const Conversation: React.FC<IConversation> = ({username, avatar, _id, index}) =
         <article style={{'backgroundColor': isSelected ? '#73fa75' : '#000'}} className={styles.conv} onClick={clickHandle}>
             <Image src={avatar} alt='' width={40} height={40}/>
             <p>{username}</p>
-            <p className={styles.status}>{isOnline ? 'В сети' : 'не в сети'}</p>
+            <p className={styles.status}>{isOnline ? <span style={{'color': 'chartreuse'}}>В сети</span> : <span style={{'color': '#868786'}}>не в сети</span>}</p>
         </article>
     )
 }

@@ -2,11 +2,13 @@
 import styles from './Menu.module.css';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import logoutIcon from './../../../images/icons/logoutIcon.svg';
 import supportIcon from './../../../images/icons/supportIcon.svg';
 import { instance } from '@/authInstance/instance';
 import { useRouter } from 'next/navigation';
 import { useAuthContext } from '@/context/authContext';
+import { Tooltip } from '../Tooltip/Tooltip';
 
 const Menu: React.FC = () => {
 
@@ -50,8 +52,8 @@ const Menu: React.FC = () => {
         }}
          className={styles.menu}>
             <ul>
-                <motion.li variants={listVariants} initial={'initial'} custom={1} animate={'visible'}>Профиль <Image src={avatar} alt='' width={24} priority height={24}/></motion.li>
-                <motion.li variants={listVariants} initial={'initial'} custom={2} animate={'visible'}>Поддержка <Image priority src={supportIcon} alt='' width={24} height={24}/></motion.li>
+                <motion.li variants={listVariants} initial={'initial'} custom={1} animate={'visible'}><Link style={{'color': '#fff', 'textDecoration': 'none'}} href={'/profile'}>Профиль</Link> <Image src={avatar} alt='' width={24} priority height={24}/></motion.li>
+                <motion.li variants={listVariants} initial={'initial'} custom={2} animate={'visible'}><Tooltip text='Адрес поддержки support@gmail.com'>Поддержка</Tooltip> <Image priority src={supportIcon} alt='' width={24} height={24}/></motion.li>
                 <motion.li variants={listVariants} initial={'initial'} custom={3} animate={'visible'} onClick={logout}>Выйти <Image priority src={logoutIcon} alt='' width={20} height={20}/></motion.li>
             </ul>
         </motion.nav>

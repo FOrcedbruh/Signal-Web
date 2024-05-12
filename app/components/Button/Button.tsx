@@ -7,11 +7,33 @@ interface ButtonPropsType {
     w: number,
     h: number,
     type?: 'button' | 'submit' | 'reset',
-    isDisabled?: boolean
+    isDisabled?: boolean,
+    isLoading?: boolean
+}
+
+const Loader: React.FC = () => {
+
+    return (
+        <motion.div 
+        animate={{
+            scale: [1, 2, 2, 1, 1],
+            rotate: [0, 0, 270, 270, 0],
+            borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+        }}
+        transition={{
+            duration: 2,
+            ease: "easeInOut",
+            times: [0, 0.2, 0.5, 0.8, 1],
+            repeat: Infinity,
+            repeatDelay: 1
+          }} className={styles.loader}>
+            
+        </motion.div>
+    )
 }
 
 
-const Button: React.FC<ButtonPropsType> = ({action, text, w, h, type, isDisabled}) => {
+const Button: React.FC<ButtonPropsType> = ({action, text, w, h, type, isDisabled, isLoading}) => {
 
     return (
         <motion.button animate={{
@@ -23,7 +45,7 @@ const Button: React.FC<ButtonPropsType> = ({action, text, w, h, type, isDisabled
             'height': h,
             'cursor': isDisabled ? 'not-allowed' : 'pointer',
         }} className={styles.button}>
-            {text}
+            {isLoading ? <Loader /> : text}
         </motion.button>
     )
 }

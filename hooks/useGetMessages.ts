@@ -6,15 +6,18 @@ import useConversation from "@/zustand/useConversation";
 const useGetMessages = () => {
     const [loading, setLoading] = useState<boolean>(false);
 
-    const { messages, setMessages, selectedConversation } = useConversation()
+    const { messages, setMessages, selectedConversation } = useConversation();
 
     useEffect(() => {
         const getMessages = async () => {
             setLoading(true);
             try {
-                await instance.get(`messages/${selectedConversation?._id}`).then(res => {
-                    setMessages(res.data)
-                })
+                const res = await instance.get(`/messages/${selectedConversation?._id}`);
+
+                const data = await res.data;
+                console.log(data)
+                setMessages(data);
+
             } catch (error) {
                 console.log(error);
             } finally {
@@ -25,10 +28,10 @@ const useGetMessages = () => {
         if (selectedConversation?._id) {
             getMessages();
         }
-    }, [selectedConversation, messages, setMessages]);
+    }, [selectedConversation, setMessages]);
    
 
-    return { messages, loading}
+    return { messages, loading };
 }
 
 export default useGetMessages;

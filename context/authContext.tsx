@@ -8,7 +8,7 @@ interface IContext {
 }
 
 export const AuthContext = createContext<IContext>({
-    authUser: '',
+    authUser: null,
 });
 
 export const useAuthContext = () => {
