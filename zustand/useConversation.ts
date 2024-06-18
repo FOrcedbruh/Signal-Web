@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { IConversation } from "@/types/IConversation";
-import { setMessages } from "@/redux/reducers/ConversationSlice";
 import { IMessage } from "@/types/IMessage";
 
 interface StoreType {
