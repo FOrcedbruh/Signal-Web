@@ -2,6 +2,6 @@ import axios from "axios";
 
 
 export const instance = axios.create({
-    baseURL: 'http://localhost:3124/',
+    baseURL: 'https://signal-server-gu0d.onrender.com/',
     withCredentials: true
 })
