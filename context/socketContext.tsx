@@ -23,7 +23,7 @@ export const SocketContextProvider = ({children}: {children: React.ReactNode}) =
     //@ts-ignore
     useEffect(() => {
         if (authUser) {
-        const socket = io('http://localhost:3124', {
+        const socket = io('https://signal-server-7mra.onrender.com', {
             query: {
                 userId
             }
